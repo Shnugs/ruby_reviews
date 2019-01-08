@@ -1,11 +1,13 @@
+# defining employees using arrays
 employee_1 = ["Nick", "Cage", 70000, true]
 employee_2 = ["Julia", "Andrwes", 80000, true]
 
 puts "#{ employee_1[0] } #{ employee_1[1] } makes #{ employee_1[2] } per year."
 puts "#{ employee_2[0] } #{ employee_2[1] } makes #{ employee_2[2] } per year."
 
-employee_1 = {:first_name => "Nick", :last_name => "Cage", :salary => 70000, :active => true}
-employee_2 = {:first_name => "Julia", :last_name => "Andrews", :salary => 80000, :active => true}
+# defining employees using hashes
+employee_1 = {first_name: "Nick", last_name: "Cage", salary: 70000, active: true}
+employee_2 = {first_name: "Julia", last_name: "Andrews", salary: 80000, active: true}
 
 class Employee
 
