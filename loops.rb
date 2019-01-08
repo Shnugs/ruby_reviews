@@ -1,6 +1,11 @@
-count = 0
+array = ["jim", "sam", "jane", "spot"]
 
+array.length.times do |puppy_name|
+  p array[puppy_name].capitalize
+end
 
-3.times do |block_variable|
-  puts "block_variable: #{block_variable}"
+puts "===================="
+
+array.each do |puppy_name|
+  p array[puppy_name].capitalize
 end
