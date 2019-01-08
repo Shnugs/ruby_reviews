@@ -1,3 +1,7 @@
+count = 0
+
+
 3.times do 
-  puts "hello, joe"
+  p count
+  count += 1
 end
