@@ -1,7 +1,6 @@
 count = 0
 
 
-3.times do 
-  p count
-  count += 1
+3.times do |block_variable|
+  puts "block_variable: #{block_variable}"
 end
