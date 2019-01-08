@@ -1,11 +1,7 @@
-array = ["jim", "sam", "jane", "spot"]
+count = 10
 
-array.length.times do |puppy_name|
-  p array[puppy_name].capitalize
+until count > 0
+  puts count
+  count -= 1
 end
 
-puts "===================="
-
-array.each do |puppy_name|
-  p array[puppy_name].capitalize
-end
