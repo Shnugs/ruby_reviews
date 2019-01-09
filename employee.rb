@@ -11,12 +11,14 @@ employee_2 = {first_name: "Julia", last_name: "Andrews", salary: 80000, active: 
 
 # defining employees using a class
 class Employee
+  attr_reader :first_name, :last_name, :active
+  attr_writer :active
 
-  def initialize(first_name, last_name, salaray, currently_working)
+  def initialize(first_name, last_name, salary, active)
     @first_name = first_name
     @last_name = last_name
-    @salaray = salaray
-    @currently_working = currently_working
+    @salary = salary
+    @active = active
   end
 
   def show_info
@@ -24,19 +26,41 @@ class Employee
     return nil
   end
 
-  def currently_working?
-    if @currently_working
-      puts "#{ @first_name } #{ @last_name } is currently active."
+  def hire
+    if @active
+      puts "#{ @first_name } #{ @last_name } already has a job."
     else
-      puts "#{ @first_name } #{ @last_name } is not currently active."
+      @active = true
+      puts "You just booked #{ @first_name } #{ @last_name }."
+    end
+  end
+
+  def fire
+    if @active
+      @active = false
+      puts "#{ @first_name } #{ @last_name } has been fired!"
+    else
+      puts "#{ @first_name } #{ @last_name } isn't even working. You can't fire them."
+    end
+  end
+
+  def active?
+    if @active
+      puts "#{ @first_name } #{ @last_name } is currently employed."
+    else
+      puts "#{ @first_name } #{ @last_name } is not currently employed."
     end
   end
 
   def get_promotion
-    @salaray += rand(10) * 1000
+    @salary *= 1.05
   end
 
 end
 
-emp_1 = Employee.new("Nick", "Cage", 70000, true)
-emp_2 = Employee.new("Julia", "Andrwes", 80000, true)
+# employee_2 = Employee.new("Julia", "Andrwes", 80000, true)
+
+employee_1 = Employee.new("Nick", "Cage", 70000, true)
+employee_1.active?
+employee_1.fire 
+employee_1.active?
