@@ -9,6 +9,7 @@ puts "#{ employee_2[0] } #{ employee_2[1] } makes #{ employee_2[2] } per year."
 employee_1 = {first_name: "Nick", last_name: "Cage", salary: 70000, active: true}
 employee_2 = {first_name: "Julia", last_name: "Andrews", salary: 80000, active: true}
 
+# defining employees using a class
 class Employee
 
   def initialize(first_name, last_name, salaray, currently_working)
@@ -29,6 +30,10 @@ class Employee
     else
       puts "#{ @first_name } #{ @last_name } is not currently active."
     end
+  end
+
+  def get_promotion
+    @salaray += rand(10) * 1000
   end
 
 end
