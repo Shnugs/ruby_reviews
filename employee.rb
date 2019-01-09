@@ -1,14 +1,3 @@
-# defining employees using arrays
-employee_1 = ["Nick", "Cage", 70000, true]
-employee_2 = ["Julia", "Andrwes", 80000, true]
-
-puts "#{ employee_1[0] } #{ employee_1[1] } makes #{ employee_1[2] } per year."
-puts "#{ employee_2[0] } #{ employee_2[1] } makes #{ employee_2[2] } per year."
-
-# defining employees using hashes
-employee_1 = {first_name: "Nick", last_name: "Cage", salary: 70000, active: true}
-employee_2 = {first_name: "Julia", last_name: "Andrews", salary: 80000, active: true}
-
 # defining employees using a class
 class Employee
   attr_reader :first_name, :last_name, :active
@@ -35,6 +24,10 @@ class Employee
     end
   end
 
+  def give_annual_raise
+    @salary *= 1.05
+  end
+
   def fire
     if @active
       @active = false
@@ -52,15 +45,40 @@ class Employee
     end
   end
 
-  def get_promotion
-    @salary *= 1.05
+end
+
+class Manager < Employee
+  
+  def send_report
+    puts "Sending report..."
+    # Report generating method yada yada
+    puts "Email sent"
   end
 
 end
 
-# employee_2 = Employee.new("Julia", "Andrwes", 80000, true)
+employee_1 = Employee.new(
+                          first_name: "Nick", 
+                          last_name: "Cage", 
+                          salary: 70000, 
+                          active: true
+                          )
 
-employee_1 = Employee.new({first_name: "Nick", last_name: "Cage", salary: 70000, active: true})
-employee_1.active?
-employee_1.fire 
-employee_1.active?
+employee_2 = Employee.new(
+                          first_name: "Julie", 
+                          last_name: "Andrwes", 
+                          salary: 80000, 
+                          active: true
+                          )
+
+employee_1.show_info
+employee_2.show_info
+
+manager = Manager.new(
+                      first_name: "Grace",
+                      last_name: "Hopper",
+                      salary: 100000,
+                      active: true
+                      )
+
+manager.show_info
