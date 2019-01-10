@@ -1,5 +1,12 @@
-# defining employees using a class
-class Employee
+module Reportable
+  def send_report
+    puts "Sending report..."
+    # code to send report
+    puts "Email sent."
+  end
+end
+
+ class Employee
   attr_reader :first_name, :last_name, :active
   attr_writer :active
 
@@ -10,57 +17,43 @@ class Employee
     @active = input_options[:active]
   end
 
-  def show_info
-    puts "#{ @first_name } #{ @last_name } makes #{ @salary } per year"
-    return nil
-  end
-
-  def hire
-    if @active
-      puts "#{ @first_name } #{ @last_name } already has a job."
-    else
-      @active = true
-      puts "You just booked #{ @first_name } #{ @last_name }."
-    end
+  def print_info
+    puts "#{ @first_name } #{ @last_name } makes #{ @salary } a year."
   end
 
   def give_annual_raise
     @salary *= 1.05
   end
-
-  def fire
-    if @active
-      @active = false
-      puts "#{ @first_name } #{ @last_name } has been fired!"
-    else
-      puts "#{ @first_name } #{ @last_name } isn't even working. You can't fire them."
-    end
-  end
-
-  def active?
-    if @active
-      puts "#{ @first_name } #{ @last_name } is currently employed."
-    else
-      puts "#{ @first_name } #{ @last_name } is not currently employed."
-    end
-  end
-
 end
 
 class Manager < Employee
-  
+  include Reportable
+
   def initialize(input_options)
     super(input_options)
     @employees = input_options[:employees]
   end
 
-  def send_report
-    puts "Sending report..."
-    # Report generating method yada yada
-    puts "Email sent"
+  def give_all_raises
+    @employees.each { |employee| employee.give_annual_raise }
   end
 
+  def fire_all_employees
+    @employees.each { |employee| employee.active = false }
+    puts "Muhaha!"
+  end
 end
+
+class Intern < Employee
+  include Reportable 
+
+  def send_report
+    puts "Sending report..."
+    # code to send report
+    puts "Email sent."
+  end
+end
+
 
 employee_1 = Employee.new(
                           first_name: "Nick", 
@@ -70,21 +63,25 @@ employee_1 = Employee.new(
                           )
 
 employee_2 = Employee.new(
-                          first_name: "Julie", 
-                          last_name: "Andrwes", 
+                          first_name: "Julia", 
+                          last_name: "Andrews", 
                           salary: 80000, 
                           active: true
                           )
-
-employee_1.show_info
-employee_2.show_info
 
 manager = Manager.new(
                       first_name: "Grace",
                       last_name: "Hopper",
                       salary: 100000,
-                      active: true, 
+                      active: true,
                       employees: [employee_1, employee_2]
                       )
 
-manager.show_info
+intern = Intern.new(
+                    first_name: "Jimmy",
+                    last_name: "Olsen",
+                    salary: 25000,
+                    active: true
+                    )
+
+intern.send_report
